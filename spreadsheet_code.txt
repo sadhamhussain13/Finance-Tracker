@@ -1,0 +1,13 @@
+function doPost(e) {
+  const sheet = SpreadsheetApp.openById("YOUR_SPREADSHEET_ID").getSheetByName("Finance");
+  const data = JSON.parse(e.postData.contents);
+
+  sheet.appendRow([
+    new Date(),
+    data.description,
+    data.amount,
+    data.type
+  ]);
+
+  return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
+}
